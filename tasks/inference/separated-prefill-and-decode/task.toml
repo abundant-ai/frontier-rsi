@@ -1,0 +1,29 @@
+schema_version = "1.4"
+artifacts = ["/app/submission", "/app/runs"]
+[task]
+name = "abundant/separated-prefill-and-decode"
+description = "Real two-GPU prompt and decoding pipeline with timed state transfers."
+[metadata]
+author_name = "Abundant AI"
+author_email = "kevin@abundant.ai"
+author_organization = "Abundant"
+category = "ml-research"
+tags = ["inference", "prefill-decode", "H100", "research-rediscovery"]
+reward_type = "continuous"
+[agent]
+network_mode = "no-network"
+timeout_sec = 14400
+user = "agent"
+[verifier]
+network_mode = "no-network"
+timeout_sec = 3600
+user = "root"
+environment_mode = "shared"
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 7200
+cpus = 8
+memory_mb = 65536
+storage_mb = 32768
+gpus = 2
+gpu_types = ["H100"]

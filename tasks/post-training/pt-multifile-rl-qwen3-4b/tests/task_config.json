@@ -1,0 +1,15 @@
+{
+ "task_id": "pt-multifile-rl-qwen3-4b",
+ "env": "multifile_repair",
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "kit_dir": "kit",
+ "context_tokens": 32768,
+ "turn_tokens": 4096,
+ "max_turns": 64,
+ "env_workers": 16,
+ "score_timeout_s": 5400,
+ "repeat_check": false,
+ "selftest_per_difficulty": 2,
+ "train_minutes": 120,
+ "train_overhead_s": 2700
+}

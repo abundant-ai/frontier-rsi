@@ -1,0 +1,37 @@
+schema_version = "1.4"
+artifacts = ["/app/submission/candidate.py"]
+
+[task]
+name = "abundant/training-objective-design"
+description = "Offline 1-GPU H100 implementation improvement with fixed constraints and private evaluation."
+
+[metadata]
+reward_type = "continuous"
+author_name = "Abundant AI"
+author_email = "kevin@abundant.ai"
+author_organization = "Abundant"
+category = "ml-research"
+tags = ["rediscovery-v1", "offline", "H100", "text"]
+difficulty_explanation = "Requires experimental improvement under a four-hour research budget."
+solution_explanation = "Private reference implementation supplied; H100 improvement margins require pilot validation."
+verification_explanation = "Raw signed objective from two validated seeds; timing averages all 20 warmed workloads. Invalid results are disqualified. metrics.json supports GPU-free rescoring."
+
+[agent]
+network_mode = "no-network"
+timeout_sec = 14400
+user = "agent"
+
+[verifier]
+network_mode = "no-network"
+timeout_sec = 43200
+user = "root"
+environment_mode = "shared"
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 14400
+cpus = 16
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100"]

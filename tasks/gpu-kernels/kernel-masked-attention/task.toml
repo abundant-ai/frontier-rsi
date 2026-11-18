@@ -1,0 +1,53 @@
+schema_version = "1.4"
+artifacts = ["/app/submission/candidate.py"]
+
+[task]
+name = "abundant/kernel-masked-attention"
+description = "Implement a GPU kernel that passes fixed correctness, latency, and resource checks on one H100."
+
+[metadata]
+open_internet_justification = "Network access is enabled during environment setup to install the agent harness. Agent and verifier execution explicitly use no-network mode."
+reward_type = "continuous"
+author_name = "Rundong Liu"
+author_email = "rundong.liu@abundant.ai"
+author_organization = "Abundant"
+category = "ml-research"
+tags = ["rediscovery-v1", "offline", "H100", "kernel"]
+difficulty_explanation = "Requires experimental improvement under a two-hour research budget."
+solution_explanation = "The oracle is packaged in solution/ and installed by solution/solve.sh."
+verification_explanation = "Reward from the median duration of 5 complete GPU sweeps with 100 cases each: full credit at the fixed limit, linear partial credit up to 10% above it, and zero beyond. Correctness and resource checks are required."
+
+[agent]
+network_mode = "no-network"
+timeout_sec = 7200
+user = "agent"
+
+[verifier]
+network_mode = "no-network"
+timeout_sec = 7200
+user = "root"
+environment_mode = "separate"
+
+[verifier.environment]
+network_mode = "no-network"
+build_timeout_sec = 14400
+cpus = 16
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100"]
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 14400
+cpus = 16
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100"]
+
+[environment.env]
+KERNEL_NRMSE_TOLERANCE = "0.01"
+
+[verifier.env]
+KERNEL_NRMSE_TOLERANCE = "0.01"

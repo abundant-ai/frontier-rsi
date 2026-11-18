@@ -1,0 +1,13 @@
+{
+  "entrypoints": [
+    "run"
+  ],
+  "memory_gib": 32,
+  "gpu_type": "H100",
+  "gpu_count": 1,
+  "candidate_language": "restricted-numerical-python-v1",
+  "operation": "op01",
+  "workloads": 100,
+  "gradients": true,
+  "timing_protocol": "resident-whole-sweep-cuda-graph-v3"
+}

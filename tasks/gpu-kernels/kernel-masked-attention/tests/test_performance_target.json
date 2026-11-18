@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "status": "frozen",
+  "timing_protocol": "resident-whole-sweep-cuda-graph-v3",
+  "seed_count": 5,
+  "workloads": 100,
+  "scored_replays_per_seed": 1,
+  "aggregation": "median_full_sweep_ms",
+  "clock_policy": "provider_default_unlocked",
+  "suite_limit_ms": 154.1
+}

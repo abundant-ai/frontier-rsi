@@ -1,0 +1,52 @@
+{
+  "fineweb": {
+    "repo": "HuggingFaceFW/fineweb",
+    "kind": "dataset",
+    "revision": "9bb295ddab0e05d785b879661af7260fed5140fc"
+  },
+  "preferences": {
+    "repo": "trl-lib/ultrafeedback_binarized",
+    "kind": "dataset",
+    "revision": "47124cb5778f5d50de1c7676a412828f3ea7c555"
+  },
+  "math": {
+    "repo": "openai/gsm8k",
+    "kind": "dataset",
+    "revision": "740312add88f781978c0658806c59bc2815b9866"
+  },
+  "tokenizer": {
+    "repo": "openai-community/gpt2",
+    "kind": "model",
+    "revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e"
+  },
+  "policy": {
+    "repo": "Qwen/Qwen2.5-1.5B-Instruct",
+    "kind": "model",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "merge_0": {
+    "repo": "Qwen/Qwen2.5-1.5B-Instruct",
+    "kind": "model",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "merge_1": {
+    "repo": "Qwen/Qwen2.5-1.5B",
+    "kind": "model",
+    "revision": "8faed761d45a263340a0528343f099c05c9a4323"
+  },
+  "merge_2": {
+    "repo": "Qwen/Qwen2.5-Math-1.5B-Instruct",
+    "kind": "model",
+    "revision": "aafeb0fc6f22cbf0eaeed126eff8be45b0360a35"
+  },
+  "merge_3": {
+    "repo": "Qwen/Qwen2.5-Math-1.5B",
+    "kind": "model",
+    "revision": "4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2"
+  },
+  "process_dev": {
+    "repo": "Qwen/ProcessBench",
+    "kind": "dataset",
+    "revision": "3bdcd5371ed567559a78f559c01c13a6deee7604"
+  }
+}

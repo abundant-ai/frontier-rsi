@@ -1,0 +1,60 @@
+schema_version = "1.3"
+artifacts = []
+source = ""
+
+[task]
+name = "abundant/pt-multifile-rl-qwen3-4b"
+description = "Design reinforcement-learning training data for Qwen/Qwen3-4B-Instruct-2507 so that, after a fixed GRPO run, it fixes the bugs in small multi-file Python projects as often as possible. RL-only version of pt-multifile-qwen3-4b (same projects): the agent hands in training projects and a few settings in /app/rl_pool, not a model; the grader trains the original model on them with a fixed 2-hour GRPO run (LoRA, multi-turn episodes, 0/1 reward) and scores the result on 300 projects that exist only under tests/. The agent gets the model (read-only), 40 sample projects, the environment, an RL-only kit with the exact training command, a scoring script, one H100 and 8 hours."
+
+[metadata]
+reward_type = "continuous"
+author_name = "Abundant AI"
+author_email = "kevin@abundant.ai"
+author_organization = "Abundant"
+difficulty_explanation = "No training projects and no generator are provided: the agent must write its own projects (code with docstrings, bugs, hidden tests) and choose which to train on, in what order and with which settings, so that a fixed 2-hour GRPO run teaches the model to find and fix bugs across several modules, including bugs the visible tests do not show. Only on-policy RL from the original model is possible, so the projects must be at a difficulty where the model sometimes succeeds."
+solution_explanation = "No reference solution. A pool is built (for example by writing correct multi-module programs, injecting bugs and computing hidden expected values by running the correct code), checked and tuned with /app/train_rl.py and /app/score.py, and handed in as /app/rl_pool/pool.jsonl with config.json."
+verification_explanation = "A collect hook stops every agent process and empties /logs/verifier before /tests is copied in; test.sh does the same again, closes /tests and runs grade.py with system paths only and isolated Python; grade.py saves the agent's scripts and logs, copies /app/rl_pool/pool.jsonl and config.json (regular files only, unchanged since the session ended) into a root-only directory, deletes every other file the agent created or changed, checks the environment (each of 8 projects' fix scores 1, an immediate submit() 0), then runs tests/train_rl.py with the pristine kit in tests/kit: bad pool rows are dropped and bad settings replaced by defaults, and /opt/base is trained with GRPO (DAPO loss, LoRA 64, multi-turn episodes, 0/1 environment reward) for at most 120 minutes. The trained weights, with the original model's config, tokenizer and pinned chat template, are scored with vLLM, greedy, repeatable (synchronous engine, no prefix caching, fixed order): each of the 300 graded projects is one episode of the kit's multi-turn loop, at most 4096 tokens per reply and 32768 per episode; the environment grades a project when the model calls submit() or its tool calls run out, running every function on its hidden tests in a sandbox (unprivileged user, no network, resource limits). Reward = the fraction of projects solved; a grading failure (self-test, training or scoring) writes no reward (verifier error). Without a usable pool the original model is scored."
+category = "ml-research"
+tags = ["post-training", "small-model", "rl", "rl-data", "multi-turn", "coding-agent", "qwen3-4b", "gpu"]
+expert_time_estimate_hours = 8.0
+relevant_experience = "You are an ML engineer designing reinforcement-learning environments and training data for a small tool-using coding agent."
+
+[agent]
+network_mode = "allowlist"
+allowed_hosts = ["api.openai.com", "chatgpt.com", "api.anthropic.com", "downloads.claude.ai", "mcp-proxy.anthropic.com", "api.x.ai", "cli-chat-proxy.grok.com", "api.z.ai"]
+timeout_sec = 28800
+user = "agent"
+
+[verifier]
+network_mode = "no-network"
+timeout_sec = 16200
+user = "root"
+environment_mode = "shared"
+
+# Runs as root after the agent session and before /tests is copied in: stops every process of the agent user (so none
+# can read the graded problems or touch the submission or the reward), empties /logs/verifier (writable by everyone
+# while the agent works) and notes when it started (grade.py refuses a submission changed after that).
+[[verifier.collect]]
+command = 't=$(date +%s.%N); mkdir -p /var/lib/ptrl && chmod 700 /var/lib/ptrl; i=0; while [ $i -lt 20 ]; do pkill -KILL -u agent; sleep 0.5; ps -u agent -o stat= | grep -v Z | grep -q . || break; i=$((i+1)); done; [ -L /logs/verifier ] && rm -f /logs/verifier; find /logs/verifier -mindepth 1 -maxdepth 1 -exec rm -rf {} + ; mkdir -p /logs/verifier && chown root:root /logs/verifier && chmod 755 /logs/verifier; echo "$t $(date +%s.%N)" > /var/lib/ptrl/session_end'
+user = "root"
+timeout_sec = 60
+
+# [environment] hosts are the baseline (used while the agent tools are installed); during the session the [agent]
+# allowlist replaces it, so the agent reaches only those model APIs (plus a runner's extra hosts for its own model).
+[environment]
+network_mode = "allowlist"
+allowed_hosts = ["x.ai", "storage.googleapis.com", "cursor.com", "downloads.cursor.com"]
+build_timeout_sec = 3600
+cpus = 16
+memory_mb = 131072
+storage_mb = 204800
+gpus = 1
+gpu_types = ["H100"]
+
+# Stop a container whose GPU does not work before the agent starts, so that another one is started. Not part of
+# the grading.
+[environment.healthcheck]
+command = "nvidia-smi -L | grep -q GPU && python3 -c 'import sys, torch; sys.exit(0 if torch.cuda.is_available() else 1)'"
+timeout_sec = 120
+interval_sec = 10
+retries = 3

@@ -1,0 +1,9 @@
+{
+  "task_id": "training-objective-design",
+  "metric": "heldout_cross_entropy",
+  "unit": "nats/token",
+  "direction": "minimize",
+  "measurements_per_seed": 1,
+  "source_unit_multiplier": 1,
+  "seed_count": 2
+}

@@ -1,0 +1,18 @@
+{
+  "id": "training-objective-design",
+  "family": "text",
+  "mode": "objective",
+  "entrypoints": [
+    "configure",
+    "training_loss"
+  ],
+  "memory_gib": 64,
+  "direction": -1,
+  "tolerance": 0.02,
+  "gpu_type": "H100",
+  "gpu_count": 1,
+  "source_row": 9,
+  "grading_seed_count": 2,
+  "candidate_language": "restricted-numerical-python-v1",
+  "objective_interface": "bounded-auxiliary-objective-v1"
+}
