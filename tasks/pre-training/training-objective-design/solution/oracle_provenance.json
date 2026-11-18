@@ -1,0 +1,12 @@
+{
+  "source_trial_id": "training-objective-design-f83980e7-344",
+  "source_model": "global.anthropic.claude-opus-5-5",
+  "source_task_version": 29,
+  "candidate_sha256": "915bf419d3d2417c7f33e338101683c30d62002a3f2b90c38514760376739ccb",
+  "copied_without_modification": true,
+  "selection": "highest valid GPT/Opus/Gemini raw objective; no-op excluded from anchors",
+  "grading_seeds": [
+    166660053,
+    565239044
+  ]
+}

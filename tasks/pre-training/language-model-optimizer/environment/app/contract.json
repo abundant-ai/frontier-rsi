@@ -1,0 +1,13 @@
+{
+  "id": "language-model-optimizer",
+  "family": "text",
+  "mode": "updates",
+  "entrypoints": [
+    "optimizer"
+  ],
+  "memory_gib": 64,
+  "direction": -1,
+  "tolerance": 0.02,
+  "gpu_type": "H100",
+  "gpu_count": 1
+}

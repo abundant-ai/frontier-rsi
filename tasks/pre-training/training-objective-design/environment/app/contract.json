@@ -1,0 +1,14 @@
+{
+  "id": "training-objective-design",
+  "family": "text",
+  "mode": "objective",
+  "entrypoints": [
+    "configure",
+    "training_loss"
+  ],
+  "memory_gib": 64,
+  "direction": -1,
+  "tolerance": 0.02,
+  "gpu_type": "H100",
+  "gpu_count": 1
+}

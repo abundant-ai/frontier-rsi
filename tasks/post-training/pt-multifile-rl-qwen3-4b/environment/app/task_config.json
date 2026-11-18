@@ -1,0 +1,8 @@
+{
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "kit_dir": "posttrain-kit",
+ "context_tokens": 32768,
+ "turn_tokens": 4096,
+ "max_turns": 64,
+ "env_workers": 16
+}

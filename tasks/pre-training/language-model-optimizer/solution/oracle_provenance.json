@@ -1,0 +1,12 @@
+{
+  "source_trial_id": "language-model-optimizer-069ad4ac-301",
+  "source_model": "openai/gpt-6.1-sol",
+  "source_task_version": 31,
+  "candidate_sha256": "2a79cc89c526c0ea028db4c2a92a7e1735802f2f7e8dda5bb03693c11322f072",
+  "copied_without_modification": true,
+  "selection": "highest valid GPT/Opus/Gemini raw objective; no-op excluded from anchors",
+  "grading_seeds": [
+    859379089,
+    908206027
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "prefill_decode",
+  "quick": false,
+  "seeds": [
+    362719,
+    859481
+  ],
+  "workloads_per_seed": 4,
+  "repetitions_per_workload": 5,
+  "warmup_seed": 1103917,
+  "score_unit": "seconds per 24-request stream"
+}
