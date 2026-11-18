@@ -7,6 +7,8 @@ rate.
 
 This repository contains 8 of the benchmark's 27 tasks, two from each area.
 
+Leaderboard and results for all 27 tasks: **[frontier-rsi.org](https://frontier-rsi.org)**.
+
 | Area | Task | What the agent does | Metric | Budget | Hardware |
 |---|---|---|---|---|---|
 | Pre-training | [`language-model-optimizer`](tasks/pre-training/language-model-optimizer) | Improve the parameter-update rule for a language model trained from scratch | held-out loss (nats/token), lower is better | 4 h | 1× H100 |
