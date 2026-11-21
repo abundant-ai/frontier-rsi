@@ -12,6 +12,7 @@ author_organization = "Abundant"
 category = "ml-research"
 tags = ["inference", "bulk-generation", "H100", "research-rediscovery"]
 reward_type = "continuous"
+verification_explanation = "rsi-bench reward: after this grader runs (tests/grade_task.sh), tests/reward_90pct.py maps its raw metric to [0, 1] with the 90% best-trial rule: the best valid model trial in the rsi-bench collection scores 1, 90% of its performance or worse scores 0, linear in between; invalid runs score 0. The best value is fixed in tests/reward_90pct.json; the grader's own reward.json is kept as reward_grader.json."
 
 [agent]
 network_mode = "no-network"

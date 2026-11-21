@@ -39,6 +39,10 @@ that task: the best trial scores 1, and a trial 10% or more worse than the best 
 - Higher is better: `reward = clip((raw − 0.9·best) / (0.1·best), 0, 1)`
 - Lower is better: `reward = clip((best/0.9 − raw) / (best/0.9 − best), 0, 1)`
 
+Each task's `tests/test.sh` applies this rule itself: it runs the task's own grader (`tests/grade_task.sh`), then
+`tests/reward_90pct.py` turns the raw score into the reward. The best value is fixed in `tests/reward_90pct.json` (the
+best valid trial in the leaderboard as of 2026-11-20), and the grader's own reward is kept as `reward_grader.json`.
+
 A model's task score is the mean of its two trials (avg@2). Any trial that fails a correctness, accuracy or resource
 check scores 0.
 

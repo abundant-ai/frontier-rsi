@@ -1,0 +1,17 @@
+{
+ "direction": "maximize",
+ "unit": "solved fraction",
+ "formula": "clip((raw - 0.9*best) / (0.1*best), 0, 1)",
+ "metric": {
+  "file": "reward.json",
+  "key": "reward",
+  "sign": 1
+ },
+ "best_raw": 0.8267,
+ "best_source": {
+  "trial_id": "pt-multifile-rl-qwen3-4b-bc320a8a-125",
+  "collection": "0f75991f (rsi-bench)",
+  "fixed_on": "2026-11-20"
+ },
+ "version": "rsi-bench-90pct-builtin-20261120"
+}
