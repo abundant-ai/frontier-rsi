@@ -1,0 +1,17 @@
+{
+ "direction": "maximize",
+ "unit": "output tokens/s",
+ "formula": "clip((raw - 0.9*best) / (0.1*best), 0, 1)",
+ "metric": {
+  "file": "metrics.json",
+  "key": "output_tokens_per_second",
+  "sign": 1
+ },
+ "best_raw": 4454.419949047416,
+ "best_source": {
+  "trial_id": "bulk-inference-aa835ab8-139",
+  "collection": "0f75991f (rsi-bench)",
+  "fixed_on": "2026-11-20"
+ },
+ "version": "rsi-bench-90pct-builtin-20261120"
+}

@@ -1,0 +1,17 @@
+{
+ "direction": "minimize",
+ "unit": "ms (median full-sweep time)",
+ "formula": "clip((best/0.9 - raw) / (best/0.9 - best), 0, 1)",
+ "metric": {
+  "file": "metrics.json",
+  "key": "suite_metric_ms",
+  "sign": 1
+ },
+ "best_raw": 96.30374145507812,
+ "best_source": {
+  "trial_id": "kernel-causal-attention-c34931f5-74",
+  "collection": "0f75991f (rsi-bench)",
+  "fixed_on": "2026-11-20"
+ },
+ "version": "rsi-bench-90pct-builtin-20261120"
+}
