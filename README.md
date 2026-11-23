@@ -28,8 +28,8 @@ Each task is a [Harbor](https://github.com/laude-institute/harbor) task:
 - `task.toml` – time limits, hardware and metadata.
 - `environment/` – the container the agent works in, including the starter code and development tools.
 - `tests/` – the grader, including the hidden evaluation data the agent never sees.
-- `solution/` – a reference solution, where one exists. The two post-training tasks have none: the agent writes the
-  training data itself.
+
+No reference solutions are included.
 
 ## Scoring
 
